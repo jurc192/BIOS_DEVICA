@@ -80,7 +80,7 @@ int hacks_screen(void)
     unsigned long int rmw_cur_col = 0;
     unsigned long int rmw_cur_row = 0;
     int c;
-    while((c = wgetch(menu_window)) != KEY_BACKSPACE) {
+    while((c = wgetch(menu_window)) != 'q') {
 
         switch (c)
         {
@@ -502,7 +502,7 @@ void print_info(const char *str)
 
 void print_legend(void)
 {
-    char str[] = "Q = exit \t W,A,S,D = scroll text \t\t O = open folder \t B = burn to floppy disc";
+    char str[] = "Q = back \t W,A,S,D = scroll text \t\t O = open folder \t B = burn to floppy disc";
 
     move(LINES - STATUSBAR_HEIGHT + STATUSBAR_PADDING, 0);
     clrtoeol();

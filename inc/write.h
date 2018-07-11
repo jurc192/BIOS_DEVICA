@@ -1,37 +1,33 @@
 /*
     BIOS_device
-    main.h
+    write.h
 
-    BIOS_DEVICE main header file
+    BIOS_DEVICE write screen includes
 */
-#ifndef MAIN_H
-#define MAIN_H
-
+#ifndef WRITE_H
+#define WRITE_H
 
 // NCurses libs
 #include <ncurses.h>
 #include <menu.h>
+#include <form.h>
 
 // Deps
 #include <stdlib.h>         /* malloc/calloc stuff */
 #include <unistd.h>         /* sleep function */
 #include <string.h>
+#include <ctype.h>          /* isspace ()*/
 
 // Configuration macros
 #include "config.h"
 
 
 /* Function definitions ******************************************************/
-// Menu selections
-int hacks_screen(void);
-int write_screen(void);
 
-// Main menu defines
-void draw_mainscr(MENU *menu, WINDOW *mw);
-void clear_mainscr(MENU *menu, WINDOW *mw, WINDOW *msw);
+int new_project(char *name, WINDOW *win);
+int open_project(char *name);
 
 void print_info(const char *str);
-int menu_handler(ITEM *cur);
-
+size_t trimwhitespace(char *out, size_t len, const char *str);
 
 #endif

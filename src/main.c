@@ -135,11 +135,10 @@ int menu_handler(ITEM *cur)
             break;
         case 1:
             // WRITE A HACK
-            print_info("WRITE A HACK");
+            write_screen();
             break;
         case 2:
             // HACKS
-            print_info("HACKS!");
             hacks_screen();
             break;
         case 3:

@@ -7,7 +7,7 @@ INC_DIR = inc/
 SRC_DIR = src
 
 # List of all source files
-OBJECTS = main.o hacks.o
+OBJECTS = main.o hacks.o write.o
 
 # Processor settings
 CFLAGS = -ggdb -Wall -O0 -I$(INC_DIR)
@@ -26,6 +26,9 @@ main.o : $(SRC_DIR)/main.c
 	gcc -c $^ $(CFLAGS)
 
 hacks.o : $(SRC_DIR)/hacks.c
+	gcc -c $^ $(CFLAGS)
+
+write.o : $(SRC_DIR)/write.c
 	gcc -c $^ $(CFLAGS)
 
 run: main
