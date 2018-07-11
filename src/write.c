@@ -1,13 +1,17 @@
 /*
-    WRITE A HACK SCREEN
+    BIOS_device
     write.c
+
+    BIOS_DEVICE write a hack screen
 */
 #include "write.h"
+
 
 int write_screen(void)
 {
 
     WINDOW *write_screen = newwin(0, 0, 0, 0);
+    mvwprintw(write_screen, LINES-2, 2, "Q = back");
     wrefresh(write_screen);
 
     init_pair(1, COLOR_YELLOW, COLOR_BLUE);

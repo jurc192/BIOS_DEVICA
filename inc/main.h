@@ -25,6 +25,7 @@
 // Menu selections
 int hacks_screen(void);
 int write_screen(void);
+int about_screen(void);
 
 // Main menu defines
 void draw_mainscr(MENU *menu, WINDOW *mw);

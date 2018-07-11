@@ -16,9 +16,8 @@ int main(void)
     noecho();
     curs_set(0);
 
-    mvprintw(LINES - 3, 1, "Press q to exit");
+    mvprintw(LINES - 3, 2, "Press Q to exit");
     refresh();
-
 
     /* MENU STUFF */
     ITEM **items = (ITEM **) calloc(5, sizeof(ITEM *));
@@ -33,7 +32,6 @@ int main(void)
     items[4] = (ITEM *)NULL;                // Array of items has to be null terminated
 
     MENU *menu_main = new_menu(items);
-
 
     /* MENU WINDOW W/ BORDER STUFF */
     int mw_height = 8;      // Hardcoded - todo: dynamic size
@@ -121,6 +119,10 @@ void draw_mainscr(MENU *menu, WINDOW *mw)
     post_menu(menu);
     wborder(mw, '0', '0', '#', '#', '#', '#', '#', '#');
     wrefresh(mw);
+    curs_set(0);        // hackish, poglej kje si ga zares pozabu
+
+    mvprintw(LINES - 3, 2, "Press Q to exit");
+    refresh();
 }
 
 /* Run selected option */
@@ -143,7 +145,7 @@ int menu_handler(ITEM *cur)
             break;
         case 3:
             // ABOUT
-            print_info("ABOUT");
+            about_screen();
             break;
     }
 
