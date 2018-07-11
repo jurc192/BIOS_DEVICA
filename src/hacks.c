@@ -9,9 +9,10 @@ int hacks_screen(void)
 
     init_pair(1, COLOR_YELLOW, COLOR_BLUE);
     init_pair(2, COLOR_GREEN, COLOR_MAGENTA);
+
     // Create new fullscreen window
     WINDOW *hacks_screen = newwin(0, 0, 0, 0);
-    wbkgd(hacks_screen, COLOR_PAIR(1));
+    // wbkgd(hacks_screen, COLOR_PAIR(1));
     wrefresh(hacks_screen);
 
     print_legend();
@@ -35,7 +36,7 @@ int hacks_screen(void)
     wborder(menu_window, '0', '0', '#', '#', '#', '#', '#', '#');
 
     WINDOW *menu_subw = derwin(menu_window, mw_height - 4, mw_width - 4, 2, 2);     // HARDCODED PADDING TODO FIX
-    wbkgd(menu_subw, COLOR_PAIR(2));
+    // wbkgd(menu_subw, COLOR_PAIR(2));
     wrefresh(menu_subw);
     if (menu_window == NULL)
     {
@@ -80,8 +81,6 @@ int hacks_screen(void)
     unsigned long int rmw_cur_row = 0;
     int c;
     while((c = wgetch(menu_window)) != KEY_BACKSPACE) {
-        printw("KeyPressed: %d", c);
-        refresh();
 
         switch (c)
         {
@@ -171,10 +170,10 @@ int burn_image(ITEM *itm)
 {
 
     /* Glue together path to image file */
-    char *a = get_path(itm);
-    char *b = "builds/";
-    char *c = item_name(itm);
-    char *d = ".img";
+    const char *a = get_path(itm);
+    const char *b = "builds/";
+    const char *c = item_name(itm);
+    const char *d = ".img";
 
     char *path = (char *) malloc(strlen(a) + strlen(b) + strlen(c) + strlen(d) + 1);
     if (path == NULL) {
@@ -222,7 +221,7 @@ int burn_image(ITEM *itm)
             MENU_WIDTH + GLOBAL_PADDING + 4                 // begin X
         );
 
-    wbkgd(cmdwin, COLOR_PAIR(1));
+    // wbkgd(cmdwin, COLOR_PAIR(1));
     wrefresh(cmdwin);
     int x, y;
     int ch;

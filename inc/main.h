@@ -22,12 +22,13 @@
 
 
 /* Function definitions ******************************************************/
-
+// Menu selections
 int hacks_screen(void);
 
 // Main menu defines
 void draw_mainscr(MENU *menu, WINDOW *mw);
 void clear_mainscr(MENU *menu, WINDOW *mw, WINDOW *msw);
+
 void print_info(const char *str);
 int menu_handler(ITEM *cur);
 
