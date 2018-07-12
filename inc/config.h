@@ -15,12 +15,6 @@
 #define GLOBAL_PADDING          2
 
 #define STATUSBAR_HEIGHT        7
-#define STATUSBAR_PADDING       3 
-
-#define MENU_WIDTH              30
-#define GLOBAL_PADDING          2
-
-#define STATUSBAR_HEIGHT        7
 #define STATUSBAR_PADDING       3
 
 

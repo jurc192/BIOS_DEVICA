@@ -34,16 +34,16 @@ int main(void)
     MENU *menu_main = new_menu(items);
 
     /* MENU WINDOW W/ BORDER STUFF */
-    int mw_height = 8;      // Hardcoded - todo: dynamic size
-    int mw_width = 23;
-    int mw_x = (COLS - mw_width) / 2;
-    int mw_y = (LINES - mw_height) / 2;
+    int mw_height = M_MENU_HEIGHT;      // Hardcoded - todo: dynamic size
+    int mw_width = M_MENU_WIDTH;
+    int mw_x = (COLS - M_MENU_WIDTH) / 2;
+    int mw_y = (LINES - M_MENU_HEIGHT) / 2;
 
     WINDOW *menu_window = newwin(mw_height, mw_width, mw_y, mw_x);
     wborder(menu_window, '0', '0', '#', '#', '#', '#', '#', '#');
     // TODO: Check if menuwindow != null
 
-    WINDOW *menu_subw = derwin(menu_window, mw_height-2, mw_width-2, 2, 2);
+    WINDOW *menu_subw = derwin(menu_window, mw_height - (2 * M_MENU_PADDING), mw_width - (2 * M_MENU_PADDING), M_MENU_PADDING, M_MENU_PADDING);
 
     menu_opts_off(menu_main, O_SHOWDESC);
     set_menu_mark(menu_main, NULL);
@@ -64,6 +64,7 @@ int main(void)
     while( (c = wgetch(menu_window)) != 'q') {
 
         switch(c) {
+
             case KEY_DOWN:
                 menu_driver(menu_main, REQ_DOWN_ITEM);
                 break;
@@ -77,6 +78,10 @@ int main(void)
                 clear_mainscr(menu_main, menu_window, menu_subw);
                 menu_handler(curr_item);
                 draw_mainscr(menu_main, menu_window);
+                break;
+
+            case KEY_RESIZE:    /* On resize */
+                recalc_mainscr(menu_main, menu_window, menu_subw);
                 break;
         }
 
@@ -96,6 +101,23 @@ int main(void)
 
     return 0;
 
+}
+
+
+/* Recalculates positions and moves windows to center (used @resize) */
+void recalc_mainscr(MENU *menu, WINDOW* mw, WINDOW *msw)
+{
+    // Clear screen
+    clear_mainscr(menu, mw, msw);
+
+    // Move window to center
+    if (mvwin(mw, (LINES - M_MENU_HEIGHT) / 2, (COLS - M_MENU_WIDTH) / 2) != OK)
+    {
+        mvprintw(0, 0, "Can't recalculate windows. Screen too small?");
+        refresh();
+    } else {
+        draw_mainscr(menu, mw);
+    }
 }
 
 

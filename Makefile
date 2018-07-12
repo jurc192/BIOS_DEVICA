@@ -4,44 +4,46 @@
 
 # Path to include folder -> header files
 INC_DIR = inc/
-SRC_DIR = src
+SRC_DIR = src/
+BUILDS_DIR = builds/
 
 # List of all source files
-OBJECTS = main.o hacks.o write.o about.o
+OBJECTS = $(BUILDS_DIR)main.o $(BUILDS_DIR)hacks.o $(BUILDS_DIR)write.o $(BUILDS_DIR)about.o
 
 # Processor settings
 CFLAGS = -ggdb -Wall -O0 -I$(INC_DIR)
 LIBS = -lmenu -lncurses -lform
 
-all: main
+# all: main
 
-main: $(OBJECTS)
+$(BUILDS_DIR)main: $(OBJECTS)
 	gcc $(CFLAGS) -o $@ $(OBJECTS) $(LIBS)
 
 
 # $@ = filename of the target
 # $< = filename of the first prerequisite
 # $^ = filenames of all prerequisites separated by spaces
-main.o : $(SRC_DIR)/main.c
-	gcc -c $^ $(CFLAGS)
+$(BUILDS_DIR)main.o : $(SRC_DIR)main.c
+	gcc -o $@ -c $^ $(CFLAGS)
 
-hacks.o : $(SRC_DIR)/hacks.c
-	gcc -c $^ $(CFLAGS)
+$(BUILDS_DIR)hacks.o : $(SRC_DIR)hacks.c
+	gcc -o $@ -c $^ $(CFLAGS)
 
-write.o : $(SRC_DIR)/write.c
-	gcc -c $^ $(CFLAGS)
+$(BUILDS_DIR)write.o : $(SRC_DIR)write.c
+	gcc -o $@ -c $^ $(CFLAGS)
 
-about.o : $(SRC_DIR)/about.c
-	gcc -c $^ $(CFLAGS)
+$(BUILDS_DIR)about.o : $(SRC_DIR)about.c
+	gcc -o $@ -c $^ $(CFLAGS)
 
-run: main
+
+run: $(BUILDS_DIR)main
 	# gnome-terminal --full-screen --profile LoRes_profile -x ./write
 	# gnome-terminal --window --maximize -x ./write
-	gnome-terminal  --geometry=180x50 -x ./main
+	gnome-terminal  --geometry=180x50 -x ./$(BUILDS_DIR)main
 	# gnome-terminal  --geometry=80x40 -x ./write
 	# gnome-terminal -x ./write
 
 .PHONY: clean
 clean:
-	rm -rf *.o
-	rm main
+	rm -rf $(BUILDS_DIR)*.o
+	rm $(BUILDS_DIR)main
