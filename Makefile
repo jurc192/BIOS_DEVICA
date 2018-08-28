@@ -12,7 +12,7 @@ OBJECTS = $(BUILDS_DIR)main.o $(BUILDS_DIR)hacks.o $(BUILDS_DIR)write.o $(BUILDS
 
 # Processor settings
 CFLAGS = -ggdb -Wall -O0 -I$(INC_DIR)
-LIBS = -lmenu -lncurses -lform
+LIBS = -lmenu -lform -lncurses
 
 # all: main
 
@@ -37,9 +37,9 @@ $(BUILDS_DIR)about.o : $(SRC_DIR)about.c
 
 
 run: $(BUILDS_DIR)main
-	# gnome-terminal --full-screen --profile LoRes_profile -x ./write
-	# gnome-terminal --window --maximize -x ./write
-	gnome-terminal  --geometry=180x50 -x ./$(BUILDS_DIR)main
+	gnome-terminal --full-screen -- ./$(BUILDS_DIR)main
+	# gnome-terminal --window --maximize -x ./$(BUILDS_DIR)main
+	# gnome-terminal  --geometry=180x50 -x ./$(BUILDS_DIR)main
 	# gnome-terminal  --geometry=80x40 -x ./write
 	# gnome-terminal -x ./write
 

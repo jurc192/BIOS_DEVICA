@@ -50,6 +50,8 @@ int hacks_screen(void)
     set_menu_win(menu_hacks, menu_window);
     set_menu_sub(menu_hacks, menu_subw);
 
+    // BUG -> ta funkcija ne dela, (za esc key). Popravljeno v naslednji verziji knjižnice
+    notimeout(menu_window, TRUE);
     keypad(menu_window, TRUE);
     post_menu(menu_hacks);
     wrefresh(menu_window);
@@ -133,7 +135,8 @@ int hacks_screen(void)
             case 10:
                 hacks_menu_handler(curr_item, readme_window);
                 break;
-        }
+        }wrefresh(menu_window);
+
     }
 
 
