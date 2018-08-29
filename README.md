@@ -30,6 +30,7 @@ Program also uses [Atom text editor], for the "write a hack" part of the program
 In order to run the program successfully, you need to edit the configuration file in: `inc/config.h`.
 HACKS_DIR is a path to a folder, which contains all the BIOS hacks.
 SKELETON_DIR is a path to a folder with default files, which are copied when creating a new hack.
+The folder `Skeleton_files/` contains the default files, used for creating new projects.
 
 BIOS_DEVICA searches the HACKS_DIR and looks for folders containing `README.md`. 
 All subfolders of HACKS_DIR containing theese files are listed in the "HACKS" part of the program.
