@@ -38,6 +38,8 @@ $(BUILDS_DIR)about.o : $(SRC_DIR)about.c
 
 run: $(BUILDS_DIR)main
 	gnome-terminal --full-screen -- ./$(BUILDS_DIR)main
+
+	# Various options for launching the program
 	# gnome-terminal --window --maximize -x ./$(BUILDS_DIR)main
 	# gnome-terminal  --geometry=180x50 -x ./$(BUILDS_DIR)main
 	# gnome-terminal  --geometry=80x40 -x ./write

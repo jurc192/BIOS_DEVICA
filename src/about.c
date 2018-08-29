@@ -24,7 +24,7 @@ int about_screen(void)
     wrefresh(about_window);
 
     WINDOW *text_window = derwin(about_window, about_h-4, about_w-4, 2, 2);
-    wprintw(text_window, "This is dummy text for the about page!");
+    wprintw(text_window, "This is a program for reading and writing BIOS assembly programs.\nIt was developed and never finished by Jure Vidmar. \nFaculty of Informatics and Computer Science, Ljubljana.\n Made in FRIžider");
     wrefresh(text_window);
 
 
