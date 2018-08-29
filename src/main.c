@@ -53,13 +53,12 @@ int main(void)
     
     keypad(menu_window, TRUE);
     post_menu(menu_main);
-    wrefresh(menu_window);      // TO moram narisat
+    wrefresh(menu_window);
 
 
     /* MAIN LOOP */
     ITEM *curr_item = current_item(menu_main);
-    print_info(item_description(curr_item));        // Mogoče to?
-
+    print_info(item_description(curr_item));
     int c;
     while( (c = wgetch(menu_window)) != 'q') {
 
@@ -141,7 +140,7 @@ void draw_mainscr(MENU *menu, WINDOW *mw)
     post_menu(menu);
     wborder(mw, '0', '0', '#', '#', '#', '#', '#', '#');
     wrefresh(mw);
-    curs_set(0);        // hackish, poglej kje si ga zares pozabu
+    curs_set(0);
 
     mvprintw(LINES - 3, 2, "Press Q to exit");
     refresh();
